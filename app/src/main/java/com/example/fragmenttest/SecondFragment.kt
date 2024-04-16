@@ -10,7 +10,6 @@ import com.example.fragmenttest.databinding.FragmentSecondBinding
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -53,6 +52,8 @@ class SecondFragment : Fragment() {
         @JvmStatic
         fun newInstance(param1: String) =
             // [1] Activity -> FirstFragment
+            // [2] Activity -> FirstFragment
+            // 두 방법 모두 아래 코드로 구현 가능하다.
             SecondFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
@@ -62,6 +63,11 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // [1] Activity -> FirstFragment
+        // [2] FirstFragment -> SecondFragment
+        // 2-2. 두 방법 모두 아래 코드로 구현 가능하다. [끝]
         binding.tvFrag2Text.text = param1
+
+
+
     }
 }
