@@ -17,15 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        binding.apply {
-//            fragment1Btn.setOnClickListener{
-//                setFragment(FirstFragment())
-//            }
-//            fragment2Btn.setOnClickListener {
-//                setFragment(SecondFragment())
-//            }
-//        }
-//        setFragment(FirstFragment())
         binding.run {
             fragment1Btn.setOnClickListener {
                 // [1] Activity -> FirstFragment

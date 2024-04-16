@@ -19,11 +19,7 @@ private const val ARG_PARAM1 = "param1"
 class FirstFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
-    private var _binding: FragmentFirstBinding? = null
-    // This property is only valid between onCreateView and
-// onDestroyView.
-    private val binding get() = _binding!!
-//    private val binding by lazy { FragmentFirstBinding.inflate(layoutInflater)}
+    private val binding by lazy { FragmentFirstBinding.inflate(layoutInflater)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,27 +33,10 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_first, container, false)
-//    }
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        binding.tvFrag1Text.text = param1
-//        val view = binding.root
-//        return view
-        return binding.root
-    }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        // [1] Activity -> FirstFragment
-//        binding.tvFrag1Text.text = param1
-//    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+        ): View? {
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment_first, container, false)
+        }
 
     companion object {
         /**
@@ -77,5 +56,10 @@ class FirstFragment : Fragment() {
                     putString(ARG_PARAM1, param1)
                 }
             }
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // [1] Activity -> FirstFragment
+        binding.tvFrag1Text.text = param1
     }
 }
