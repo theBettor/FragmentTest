@@ -35,7 +35,8 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false)
+//        return inflater.inflate(R.layout.fragment_second, container, false)
+        return binding.root
     }
 
     companion object {
@@ -51,7 +52,7 @@ class SecondFragment : Fragment() {
         @JvmStatic
         fun newInstance(param2: String) =
             // [1] Activity -> FirstFragment
-            FirstFragment().apply {
+            SecondFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM2, param2)
                 }

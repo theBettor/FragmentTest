@@ -19,9 +19,11 @@ private const val ARG_PARAM1 = "param1"
 class FirstFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
-    private val binding by lazy { FragmentFirstBinding.inflate(layoutInflater)}
+    private val binding by lazy { FragmentFirstBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // 2. onCreate로 와서 newInstance에서 만든 argument가 null이 날때 번들의 {데이터 param1}을 가용할 param1에 넣는다?
+        // param1이라는 전역변수에 'Hello First Fragment ~~' 이게 들어온 것
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -29,16 +31,25 @@ class FirstFragment : Fragment() {
     }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-        ): View? {
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_first, container, false)
-        }
+    ): View? {
+        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.fragment_first, container, false)
+        return binding.root
+    }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // [1] Activity -> FirstFragment
+        binding.tvFrag1Text.text = param1
+        // 3. 그럼 이제 출력은 여기서 한다.
+        // 당연히 앱을 실행하면 이건 안뜨고 Frag1을 눌러야만 텍스트가 출력되어진다.
+    }
+
+
+    companion object { // 1. newInstance는 메인에서 쓰이는 것.
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -56,10 +67,5 @@ class FirstFragment : Fragment() {
                     putString(ARG_PARAM1, param1)
                 }
             }
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // [1] Activity -> FirstFragment
-        binding.tvFrag1Text.text = param1
     }
 }
